@@ -1,14 +1,21 @@
 package knapsack;
 
 public class Item {
-    int weight;
-    int value;
-    float fitness = (float) value / weight;
+    double weight;
 
-    public Item(int weight, int value){
+    double value;
+    public Item(double weight, double value){
         if(weight <= 0) throw new IllegalArgumentException();
         this.weight = weight;
         this.value = value;
     }
-    float fitness = (float) value / weight;
+
+    public double getWeight(){
+        return this.weight;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
 }
