@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class TopKSurvival implements SurvivalOperator{
-    private int k;
+    private final int k;
     public TopKSurvival(int k){
         this.k = k;
     }
@@ -17,10 +17,10 @@ public class TopKSurvival implements SurvivalOperator{
             throw new SurvivalException("K ist größer als Population");
         }
         // Top k elements:
-        List<Solution> solutions = candidates.stream()
+        List<Solution> solutions = new java.util.ArrayList<>(candidates.stream()
                 .sorted(Comparator.comparing(Solution::getFitness))
                 .limit(k)
-                .toList();
+                .toList());
         // Random elements:
         if (k<populationSize){
             while (solutions.size()<populationSize){

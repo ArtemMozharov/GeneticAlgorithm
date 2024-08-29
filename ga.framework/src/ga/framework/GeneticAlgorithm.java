@@ -115,6 +115,7 @@ public class GeneticAlgorithm {
             List<Solution> candidates = new ArrayList<>();
             // iterations
             for (int c = 0; c<counter; c++){
+                System.out.println("New Population Level");
                 while (candidates.size()<size){
                     EvolutionaryOperator operator = operators.get(rand.nextInt(operators.size()));
                     candidates.add(operator.evolve(selectionOperator.selectParent(currPopulation)));
@@ -124,7 +125,7 @@ public class GeneticAlgorithm {
                 // candidates to current population
                 currPopulation.addAll(candidates);
                 // use of survival operator:
-                survivalOperator.selectPopulation(currPopulation, size);
+                currPopulation =  survivalOperator.selectPopulation(currPopulation, size);
             }
             return currPopulation;
         }

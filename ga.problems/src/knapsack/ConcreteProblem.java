@@ -24,10 +24,10 @@ public class ConcreteProblem
         KnapsackProblem problem = new KnapsackProblem(11, Arrays.asList(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10));
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
         geneticAlgorithm.solve(problem)
-                .withPopulationOfSize(3)
+                .withPopulationOfSize(5)
                 .evolvingSolutionsWith(new KnapsackMutation(problem))
                 .evaluatingSolutionsBy(new KnapsackFitnessEvaluator())
-                .survivalOperatorIs(new TopKSurvival(3))
+                .survivalOperatorIs(new TopKSurvival(2))
                 .performingSelectionWith(GeneticAlgorithm.simpleSelectionOperator).stoppingAtEvolution(10).runOptimization();
     }
 }
