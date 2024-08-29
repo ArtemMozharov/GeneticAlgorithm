@@ -12,7 +12,8 @@ public class KnapsackFitnessEvaluator implements FitnessEvaluator{
     }
     public static Solution computeFitness(KnapsackSolution knapsackSolution){
         double fitness = knapsackSolution.items.stream()
-                .map(Item::getValue).reduce(0.0, Double::sum);
+                .map(Item::getValue)
+                .reduce(0.0, Double::sum);
         knapsackSolution.setFitness(fitness);
         return knapsackSolution;
     }

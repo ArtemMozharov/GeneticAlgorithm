@@ -35,7 +35,7 @@ public class KnapsackProblem implements Problem {
             Item item = itemsOutside.get((int) (Math.random() * itemsOutside.size()));
             if(item.weight + placeTaken <= capacity) {
                 placeTaken += item.weight;
-                itemsOutside.remove(item);
+                //itemsOutside.remove(item);
                 solution.items.add(item);
             }
         }
