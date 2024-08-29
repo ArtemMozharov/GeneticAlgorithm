@@ -37,7 +37,19 @@ public class KnapsackMutation implements EvolutionaryOperator {
 
     @Override
     public Solution evolve(Solution solution) throws EvolutionException {
-        return evolveHelper(solution);
+        double fitness = solution.getFitness();
+        int index = -1;
+        KnapsackSolution newSolution = new KnapsackSolution(this.problem);
+        for(int i = 0; i < this.problem.currPop.size(); i++){
+            if(fitness == this.problem.currPop.get(i).getFitness()){
+                index = i;
+                newSolution = this.problem.currPop.get(i);
+                i = this.problem.currPop.size();
+            }
+        }
+
+        this.problem.currPop.remove(index);
+        return evolveHelper(newSolution);
     }
     private KnapsackSolution evolveHelper(KnapsackSolution solution) throws EvolutionException {
 
