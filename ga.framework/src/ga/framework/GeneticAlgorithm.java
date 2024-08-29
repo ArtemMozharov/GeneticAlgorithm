@@ -117,7 +117,7 @@ public class GeneticAlgorithm {
             for (int c = 0; c<counter; c++){
                 while (candidates.size()<size){
                     EvolutionaryOperator operator = operators.get(rand.nextInt(operators.size()));
-                    candidates.add(operator.evolve(selectionOperator.selectParent(candidates), problem));
+                    candidates.add(operator.evolve(selectionOperator.selectParent(currPopulation), problem));
                 }
                 // fitness of candidates
                 fitnessEvaluator.evaluate(candidates);

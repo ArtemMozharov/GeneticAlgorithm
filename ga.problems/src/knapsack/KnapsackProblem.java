@@ -13,6 +13,7 @@ public class KnapsackProblem implements Problem {
     public final double capacity;
     public double placeTaken = 0;
     public List<Item> itemsOutside =  new ArrayList<>();
+    public List<KnapsackSolution> currPop = new ArrayList<>();
 
 //    public KnapsackProblem(KnapsackSolution solution) {
 //        this = solution.getProblem();
@@ -52,6 +53,7 @@ public class KnapsackProblem implements Problem {
         }
         this.placeTaken = 0;
         solution.setFitness(0.0);
+        currPop.add(solution);
         return solution;
     }
 

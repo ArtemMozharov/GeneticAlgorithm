@@ -24,8 +24,8 @@ public class ConcreteProblem
         KnapsackProblem problem = new KnapsackProblem(11, Arrays.asList(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10));
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
         geneticAlgorithm.solve(problem)
-                .withPopulationOfSize(4)
-                .evolvingSolutionsWith(KnapsackProblem.knapsackMutation)
+                .withPopulationOfSize(3)
+                .evolvingSolutionsWith(new KnapsackMutation(problem))
                 .evaluatingSolutionsBy(new KnapsackFitnessEvaluator())
                 .survivalOperatorIs(new TopKSurvival(3))
                 .performingSelectionWith(GeneticAlgorithm.simpleSelectionOperator).stoppingAtEvolution(10).runOptimization();
