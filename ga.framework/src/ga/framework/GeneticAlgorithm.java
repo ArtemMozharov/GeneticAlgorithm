@@ -69,6 +69,11 @@ public class GeneticAlgorithm {
         int size;
         List<EvolutionaryOperator> list;
         FitnessEvaluator fitnessEvaluator;
+        SurvivalOperator survivalOperator;
+        public SelectionOperatorBuilder survivalOperatorIs(SurvivalOperator survivalOperator){
+            this.survivalOperator = survivalOperator;
+            return this;
+        }
         public CounterBuilder performingSelectionWith(SelectionOperator selectionOperator){
             CounterBuilder counterBuilder = new CounterBuilder();
             counterBuilder.selectionOperator = selectionOperator;
@@ -135,29 +140,7 @@ public class GeneticAlgorithm {
         throw new IllegalStateException();
     }
 
-    // 1.2
-    public static final SurvivalOperator TopKSurvival = new SurvivalOperator() {
-        private int k;
-        @Override
-        public List<Solution> selectPopulation(List<Solution> candidates, int populationSize) throws SurvivalException {
-            if (populationSize < k){
-                throw new SurvivalException("K ist größer als Population");
-            }
-            // Top k elements:
-            List<Solution> solutions = candidates.stream()
-                    .sorted(Comparator.comparing(Solution::getFitness))
-                    .limit(k)
-                    .toList();
-            // Random elements:
-            if (k<populationSize){
-                while (solutions.size()<populationSize){
-                    Random random = new Random();
-                    solutions.add(candidates.get(random.nextInt(candidates.size())));
-                }
-            }
-            return solutions;
-        }
-    };
+
     SelectionOperator simpleSelectionOperator = new SelectionOperator() {
         @Override
         public Solution selectParent(List<Solution> candidates) {

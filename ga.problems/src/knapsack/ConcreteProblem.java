@@ -20,7 +20,7 @@ public class ConcreteProblem
         Item g10 = new Item(1, 1);
 
         KnapsackProblem problem = new KnapsackProblem(11, Arrays.asList(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10));
-
-
+        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
+        geneticAlgorithm.solve(problem).withPopulationOfSize(4).evolvingSolutionsWith()
     }
 }
