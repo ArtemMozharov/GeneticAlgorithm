@@ -9,6 +9,11 @@ import java.util.List;
 
 public class KnapsackSolution extends Solution {
     List<Item> items = new ArrayList<>();
+    private KnapsackProblem knapsackProblem;
+
+    public KnapsackProblem getKnapsackProblem() {
+        return knapsackProblem;
+    }
 
     @Override
     public void setFitness(double fitness) {
@@ -20,6 +25,12 @@ public class KnapsackSolution extends Solution {
     public KnapsackSolution(Problem problem) {
         super(problem);
     }
+
+    public KnapsackSolution(KnapsackProblem problem) {
+        super(problem);
+        this.knapsackProblem = problem;
+    }
+
     public KnapsackSolution(Solution toCopy) {
         super(toCopy);
     }
