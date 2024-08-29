@@ -48,7 +48,7 @@ public class KnapsackMutation implements EvolutionaryOperator {
             }
         }
 
-        this.problem.currPop.remove(index);
+        if(index > -1) this.problem.currPop.remove(index);
         return evolveHelper(newSolution);
     }
     private KnapsackSolution evolveHelper(KnapsackSolution solution) throws EvolutionException {
