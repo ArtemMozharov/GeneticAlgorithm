@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 
 public class KnapsackProblem implements Problem {
-    private final int capacity;
-    private int placeTaken = 0;
-    private List<Item> itemsInside = new ArrayList<Item>();
+    private final double capacity;
+    private double placeTaken = 0;
+    public List<Item> itemsInside = new ArrayList<Item>();
     private List<Item> itemsOutside;
 
     public KnapsackProblem(int capacity, List<Item> itemsOutside) {

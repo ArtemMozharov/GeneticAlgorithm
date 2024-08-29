@@ -21,6 +21,6 @@ public class ConcreteProblem
 
         KnapsackProblem problem = new KnapsackProblem(11, Arrays.asList(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10));
 
-        SurvivalOperator topKSurvival = GeneticAlgorithm.TopKSurvival();
+
     }
 }
