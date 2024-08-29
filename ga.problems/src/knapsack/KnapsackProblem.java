@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 public class KnapsackProblem implements Problem {
     private final double capacity;
     private double placeTaken = 0;
-    public List<Item> itemsOutside;
+    public List<Item> itemsOutside =  new ArrayList<>();
 
 //    public KnapsackProblem(KnapsackSolution solution) {
 //        this = solution.getProblem();
@@ -21,7 +21,9 @@ public class KnapsackProblem implements Problem {
 
     public KnapsackProblem(int capacity, List<Item> itemsOutside) {
         this.capacity = capacity;
-        this.itemsOutside = itemsOutside;
+        for (Item item : itemsOutside) {
+            this.itemsOutside.add(item);
+        }
     }
 
     private boolean canPackItems() throws NoSolutionException {
