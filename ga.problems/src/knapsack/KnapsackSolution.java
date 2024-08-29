@@ -18,7 +18,6 @@ public class KnapsackSolution extends Solution {
 
     public KnapsackSolution(Problem problem) {
         super(problem);
-        super.
     }
     public KnapsackSolution(Solution toCopy) {
         super(toCopy);
