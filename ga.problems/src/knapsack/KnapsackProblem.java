@@ -5,6 +5,9 @@ import ga.framework.operators.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class KnapsackProblem implements Problem {
     private final int capacity;
@@ -35,4 +38,45 @@ public class KnapsackProblem implements Problem {
         }
         return new KnapsackSolution(this);
     }
+
+    //2.3
+
+    EvolutionaryOperator knapsackMutation  = new EvolutionaryOperator() {
+
+
+
+        private KnapsackSolution solutionHeads(Solution solution){
+            KnapsackSolution ourSolution = new KnapsackSolution(solution);
+            KnapsackProblem problem = ourSolution.getProblem();
+            Item item = problem.itemsInside.get((int )(Math.random() * itemsOutside.size()));
+            problem.itemsInside.remove(item);
+            problem.placeTaken = placeTaken - item.weight;
+            return new KnapsackSolution(problem);
+        }
+
+        private KnapsackSolution solutionTails(Solution solution){
+            KnapsackSolution ourSolution = new KnapsackSolution(solution);
+            KnapsackProblem problem = ourSolution.getProblem();
+            List<Item> itemsPass = problem.itemsOutside.stream()
+                            .filter(x -> {
+                                return x.weight + problem.placeTaken <= problem.capacity;
+                            }).toList();
+            Item item = itemsPass.get((int )(Math.random() * itemsPass.size()));
+            problem.itemsInside.add(item);
+            problem.placeTaken += item.weight;
+            problem.itemsOutside.remove(item);
+            return new KnapsackSolution(problem);
+        }
+
+
+
+        @Override
+        public Solution evolve(Solution solution) throws EvolutionException {
+            if(Math.random() >= 0.5){
+                return solutionHeads(solution);
+            } else return solutionTails(solution);
+        }
+    };
+
+
 }

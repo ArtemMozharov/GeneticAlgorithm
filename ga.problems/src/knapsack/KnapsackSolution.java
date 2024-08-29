@@ -1,7 +1,6 @@
 package knapsack;
 
 import ga.framework.model.*;
-import ga.framework.operators.*;
 
 import java.util.List;
 
@@ -15,5 +14,9 @@ public class KnapsackSolution extends Solution {
 
     public KnapsackSolution(Solution toCopy) {
         super(toCopy);
+    }
+
+    public KnapsackProblem getProblem() {
+        return (KnapsackProblem) super.getProblem();
     }
 }
