@@ -6,7 +6,7 @@ import ga.framework.operators.*;
 import java.util.List;
 
 public class KnapsackSolution extends Solution {
-    int itemsAmount;
+    int size;
     List<Item> items;
 
     public KnapsackSolution(Problem problem) {
