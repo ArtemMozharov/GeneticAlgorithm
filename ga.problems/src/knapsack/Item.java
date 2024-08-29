@@ -8,4 +8,5 @@ public class Item {
         this.value = value;
     }
     float fitness = (float) value / weight;
+
 }
