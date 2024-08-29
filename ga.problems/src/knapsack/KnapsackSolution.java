@@ -10,6 +10,13 @@ import java.util.List;
 public class KnapsackSolution extends Solution {
     List<Item> items = new ArrayList<>();
 
+    @Override
+    public void setFitness(double fitness) {
+        super.setFitness(items.stream()
+                .map(Item::getValue)
+                .reduce(0.0, Double::sum));
+    }
+
     public KnapsackSolution(Problem problem) {
         super(problem);
     }

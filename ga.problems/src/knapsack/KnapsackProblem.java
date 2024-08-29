@@ -39,6 +39,7 @@ public class KnapsackProblem implements Problem {
                 solution.items.add(item);
             }
         }
+        solution.setFitness(0.0);
         return solution;
     }
 
