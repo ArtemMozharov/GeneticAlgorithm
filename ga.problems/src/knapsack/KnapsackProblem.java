@@ -22,9 +22,7 @@ public class KnapsackProblem implements Problem {
 
     public KnapsackProblem(int capacity, List<Item> itemsOutside) {
         this.capacity = capacity;
-        for (Item item : itemsOutside) {
-            this.itemsOutside.add(item);
-        }
+        this.itemsOutside.addAll(itemsOutside);
     }
 
     private boolean canPackItems() throws NoSolutionException {
