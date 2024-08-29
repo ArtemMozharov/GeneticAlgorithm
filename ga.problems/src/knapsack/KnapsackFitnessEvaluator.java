@@ -8,6 +8,6 @@ import java.util.List;
 
 public class KnapsackFitnessEvaluator implements FitnessEvaluator{
     public void evaluate(List<Solution> population) {
-
+        //population.stream().map().toList();
     }
 }
