@@ -3,7 +3,12 @@ package knapsack;
 import ga.framework.model.*;
 import ga.framework.operators.*;
 
+import java.util.List;
+
 public class KnapsackSolution extends Solution {
+    int itemsAmount;
+    List<Item> items;
+
     public KnapsackSolution(Problem problem) {
         super(problem);
     }
