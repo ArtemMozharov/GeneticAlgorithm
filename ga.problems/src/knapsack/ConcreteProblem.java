@@ -28,6 +28,6 @@ public class ConcreteProblem
                 .evolvingSolutionsWith(KnapsackProblem.knapsackMutation)
                 .evaluatingSolutionsBy(new KnapsackFitnessEvaluator())
                 .survivalOperatorIs(new TopKSurvival(3))
-                .performingSelectionWith(new TournamentSelection());
+                .performingSelectionWith(GeneticAlgorithm.simpleSelectionOperator).stoppingAtEvolution(10).runOptimization();
     }
 }

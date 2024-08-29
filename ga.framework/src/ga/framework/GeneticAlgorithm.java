@@ -46,7 +46,7 @@ public class GeneticAlgorithm {
     public class FitnessEvaluatorBuilder{
         Problem problem;
         int size;
-        List<EvolutionaryOperator> list;
+        List<EvolutionaryOperator> list = new ArrayList<>();
         public SelectionOperatorBuilder evaluatingSolutionsBy(FitnessEvaluator fitnessEvaluator){
             SelectionOperatorBuilder selectionOperatorBuilder = new SelectionOperatorBuilder();
             selectionOperatorBuilder.fitnessEvaluator = fitnessEvaluator;
@@ -141,7 +141,7 @@ public class GeneticAlgorithm {
     }
 
 
-    SelectionOperator simpleSelectionOperator = new SelectionOperator() {
+    public static SelectionOperator simpleSelectionOperator = new SelectionOperator() {
         @Override
         public Solution selectParent(List<Solution> candidates) {
             Optional<Solution> parent = candidates.stream().max(Comparator.comparing(Solution::getFitness));

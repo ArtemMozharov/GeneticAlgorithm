@@ -39,16 +39,18 @@ public class KnapsackProblem implements Problem {
 
     @Override
     public KnapsackSolution createNewSolution() throws NoSolutionException {
+        List<Item> ourItems = new ArrayList<>(this.itemsOutside);
         KnapsackSolution solution = new KnapsackSolution(this);
         while (canPackItems()) {
-            int index  = (int) (Math.random() * itemsOutside.size());
-            Item item = itemsOutside.get(index);
+            int index  = (int) (Math.random() * ourItems.size());
+            Item item = ourItems.get(index);
             if( item != null && item.weight + placeTaken <= capacity) {
                 this.placeTaken += item.weight;
-                this.itemsOutside.remove(index);
+                ourItems.remove(index);
                 solution.items.add(item);
             }
         }
+        this.placeTaken = 0;
         solution.setFitness(0.0);
         return solution;
     }
@@ -111,6 +113,7 @@ public class KnapsackProblem implements Problem {
 
             Item item = ourSolution.items.get((int )(Math.random() * ourSolution.items.size()));
             ourSolution.items.remove(item);
+            ourSolution.setFitness(0.0);
 
             return ourSolution;
         }
@@ -123,6 +126,7 @@ public class KnapsackProblem implements Problem {
                     }).toList();
             Item item = itemsPass.get((int )(Math.random() * itemsPass.size()));
             ourSolution.items.add(item);
+            ourSolution.setFitness(0.0);
             return ourSolution;
         }
 
