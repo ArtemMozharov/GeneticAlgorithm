@@ -6,6 +6,11 @@ import java.util.List;
 
 public class KnapsackSolution extends Solution {
     int size;
+
+    public List<Item> getItems() {
+        return items;
+    }
+
     List<Item> items;
 
     public KnapsackSolution(Problem problem) {
