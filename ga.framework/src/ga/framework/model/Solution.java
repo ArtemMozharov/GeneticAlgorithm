@@ -4,7 +4,10 @@ public abstract class Solution {
 	
 	private Problem problem;
 	private double fitness;
-	
+
+	public Solution(){
+
+	}
 	public Solution(Problem problem) {
 		this.problem = problem;
 	}

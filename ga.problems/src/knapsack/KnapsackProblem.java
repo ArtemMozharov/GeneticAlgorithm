@@ -12,7 +12,6 @@ import static java.util.stream.Collectors.toList;
 public class KnapsackProblem implements Problem {
     private final double capacity;
     private double placeTaken = 0;
-    public List<Item> itemsInside = new ArrayList<Item>();
     private List<Item> itemsOutside;
 
     public KnapsackProblem(int capacity, List<Item> itemsOutside) {
@@ -22,61 +21,65 @@ public class KnapsackProblem implements Problem {
 
     private boolean canPackItems() throws NoSolutionException {
         for (Item item : itemsOutside){
-            if (item.weight + placeTaken <= capacity) return true;
-        } throw new NoSolutionException("No items can be added to the knapsack");
+            if (item.weight + placeTaken <= capacity){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public KnapsackSolution createNewSolution() throws NoSolutionException {
+        KnapsackSolution solution = new KnapsackSolution(this);
         while (canPackItems()) {
             Item item = itemsOutside.get((int) (Math.random() * itemsOutside.size()));
             if(item.weight + placeTaken <= capacity) {
                 placeTaken += item.weight;
                 itemsOutside.remove(item);
-                itemsInside.add(item);
+                solution.items.add(item);
             }
         }
-        return new KnapsackSolution(this);
+        return solution;
     }
 
-    //2.3
+    // 2.3
 
-    EvolutionaryOperator knapsackMutation  = new EvolutionaryOperator() {
-
-
-
-        private KnapsackSolution solutionHeads(Solution solution){
-            KnapsackSolution ourSolution = new KnapsackSolution(solution);
-            KnapsackProblem problem = ourSolution.getProblem();
-            Item item = problem.itemsInside.get((int )(Math.random() * itemsOutside.size()));
-            problem.itemsInside.remove(item);
-            problem.placeTaken = placeTaken - item.weight;
-            return new KnapsackSolution(problem);
-        }
-
-        private KnapsackSolution solutionTails(Solution solution){
-            KnapsackSolution ourSolution = new KnapsackSolution(solution);
-            KnapsackProblem problem = ourSolution.getProblem();
-            List<Item> itemsPass = problem.itemsOutside.stream()
-                            .filter(x -> {
-                                return x.weight + problem.placeTaken <= problem.capacity;
-                            }).toList();
-            Item item = itemsPass.get((int )(Math.random() * itemsPass.size()));
-            problem.itemsInside.add(item);
-            problem.placeTaken += item.weight;
-            problem.itemsOutside.remove(item);
-            return new KnapsackSolution(problem);
-        }
-
-
-
-        @Override
-        public Solution evolve(Solution solution) throws EvolutionException {
-            if(Math.random() >= 0.5){
-                return solutionHeads(solution);
-            } else return solutionTails(solution);
-        }
-    };
+//    EvolutionaryOperator knapsackMutation  = new EvolutionaryOperator() {
+//
+//
+//
+//        private KnapsackSolution solutionHeads(Solution solution){
+//            KnapsackSolution ourSolution = new KnapsackSolution(solution);
+//            KnapsackProblem problem = ourSolution.getProblem();
+//            Item item = problem.itemsInside.get((int )(Math.random() * itemsOutside.size()));
+//            problem.itemsInside.remove(item);
+//            problem.placeTaken = placeTaken - item.weight;
+//            return new KnapsackSolution(problem);
+//        }
+//
+//        private KnapsackSolution solutionTails(Solution solution){
+//            KnapsackSolution ourSolution = new KnapsackSolution(solution);
+//            KnapsackProblem problem = ourSolution.getProblem();
+//            List<Item> itemsPass = problem.itemsOutside.stream()
+//                            .filter(x -> {
+//                                return x.weight + problem.placeTaken <= problem.capacity;
+//                            }).toList();
+//            Item item = itemsPass.get((int )(Math.random() * itemsPass.size()));
+//            problem.itemsInside.add(item);
+//            problem.placeTaken += item.weight;
+//            problem.itemsOutside.remove(item);
+//            return new KnapsackSolution(problem);
+//        }
+//
+//
+//
+//        @Override
+//        public Solution evolve(Solution solution) throws EvolutionException {
+//            if(Math.random() >= 0.5){
+//                return solutionHeads(solution);
+//            } else return solutionTails(solution);
+//        }
+//    };
 
 
 }
