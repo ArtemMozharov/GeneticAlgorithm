@@ -39,9 +39,9 @@ public class KnapsackMutation implements EvolutionaryOperator {
     public Solution evolve(Solution solution) throws EvolutionException {
         double fitness = solution.getFitness();
         int index = -1;
-        KnapsackSolution newSolution = new KnapsackSolution(this.problem);
+        KnapsackSolution newSolution = this.problem.currPop.get((int) (Math.random() * this.problem.currPop.size()));
         for(int i = 0; i < this.problem.currPop.size(); i++){
-            if(fitness == this.problem.currPop.get(i).getFitness()){
+            if(Double.compare(fitness , this.problem.currPop.get(i).getFitness()) == 0){
                 index = i;
                 newSolution = this.problem.currPop.get(i);
                 i = this.problem.currPop.size();
