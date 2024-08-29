@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 
 public class KnapsackProblem implements Problem {
-    private final double capacity;
-    private double placeTaken = 0;
+    public final double capacity;
+    public double placeTaken = 0;
     public List<Item> itemsOutside =  new ArrayList<>();
 
 //    public KnapsackProblem(KnapsackSolution solution) {
